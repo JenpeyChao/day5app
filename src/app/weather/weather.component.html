@@ -1,36 +1,67 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <div style="text-align: center;">
     <h3 class="mb-4 pb-2 fw-normal">Check the weather forecast</h3>
     <input type="text" placeholder="Enter a city" [(ngModel)]="area" (keydown.enter) = "findArea()" id="areaInput" class="input"/>
     <button (click)="findArea()" class="button" onmouseover="this.style.backgroundColor='#cccccc';" 
         onmouseout="this.style.backgroundColor='#f3f6f4';">Search</button>
     <h1>{{city}}</h1>
-    <div>
-        <!-- <p>{{data.list[0].main.temp}}</p> -->
+    <ng-container *ngIf = "city == ''">
+        <!-- <pre>{{weatherData[0].weather[0] | json}}</pre> -->
         <section class="vh-100">
-            <div class="container py-5 h-100">
+            <div class="container py-5 h-10">
           
-              <div class="row d-flex justify-content-center align-items-center h-100">
-
-                <div class="card shadow-0 border">
-                    <div class="card-body p-4">
-          
-                      <p class="mb-2">Current temperature: <strong>5.42°C</strong></p>
-                      <p>Feels like: <strong>4.37°C</strong></p>
-                      <p>Max: <strong>6.11°C</strong>, Min: <strong>3.89°C</strong></p>
-          
-                      <div class="d-flex flex-row align-items-center">
-                        <p class="mb-0 me-4">Scattered Clouds</p>
-                        <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
-                      </div>
-          
+                <div id="currentWeather" class="row d-flex justify-content-center align-items-center h-100">
+                
+                    <div class="card shadow-0 border" style="background-color: lightgray;">
+                        <div class="card-body p-4">
+            
+                            <p class="mb-2">Current temperature: <strong>{{((weatherData[0].main.temp - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
+                            <p>Feels like: <strong>{{((weatherData[0].main.feels_like - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
+                            <p>Max: <strong>{{((weatherData[0].main.temp_max - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong>, Min: <strong>{{((weatherData[0].main.temp_min - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
+                
+                            <div class="d-flex flex-row align-items-center">
+                                <p class="mb-0 me-4">{{weatherData[0].weather[0].description}}  </p>
+                                <i class="fas fa-skull fa-3x" style="color: #e40909;"></i>
+                            </div>
+            
+                        </div>
                     </div>
-                  </div>
-          
+                    
                 </div>
+
+                <div id="denisSucks" class="row d-flex justify-content-center align-items-center h-100">
+                    <ng-container *ngFor="let weather of weatherData; let i = index">
+                        <ng-container *ngIf = " i > 0">
+                            <div class="card shadow-0 border" style="background-color: lightgray;">
+                                <div class="card-body p-4">
+                    
+                                    <p class="mb-2">Current temperature: <strong>{{((weatherData[i].main.temp - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
+                                    <p>Feels like: <strong>{{((weatherData[i].main.feels_like - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
+                                    <p>Max: <strong>{{((weatherData[i].main.temp_max - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong>, Min: <strong>{{((weatherData[i].main.temp_min - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
+                        
+                                    <div class="d-flex flex-row align-items-center">
+                                        <p class="mb-0 me-4">{{weatherData[i].weather[0].description}}</p>
+                                        <i class="fas fa-skull fa-3x" style="color: #e40909;"></i>
+                                    </div>
+                    
+                                </div>
+                            </div>   
+                        </ng-container>
+                        
+                        
+                    </ng-container>
+                    
+                </div>
+                
+                
+
+                
           
             </div>
         </section>
         
-    </div>
+    </ng-container>
     
 </div>

@@ -6,21 +6,23 @@ import { WeatherService } from '../weather.service';
   styleUrl: './weather.component.css'
 })
 export class WeatherComponent {
-  area = 'rockville';
+  area = '';
   city = '';
   data: any = '';
   weatherData: any = [];
   constructor(private WeatherService: WeatherService){
-    this.findArea();
   }
 
   findArea(){
     this.city = this.area;
-    if (this.city) {
-      this.WeatherService.findWeather(this.city).subscribe(
+    this.area = '';
+    if (this.area != '') {
+      this.WeatherService.findWeather(this.area).subscribe(
         response => {
           this.data = response;
-          console.log(this.data); // Handle the response data
+          console.log(this.data);
+          this.weatherData = []
+          this.getWeather();// Handle the response data
         },
         error => {
           this.data = "Couldnt find the City: " + this.city;
@@ -28,7 +30,6 @@ export class WeatherComponent {
           return;
         }
       );
-      this.getWeather();
     }else{
       this.data = "Enter a city";
       return
