@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+.button{
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+.biggerButton{
+    width: 300px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+.input{
+    width: 300px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 10px;
+}

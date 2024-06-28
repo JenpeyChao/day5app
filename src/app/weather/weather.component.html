@@ -1,0 +1,9 @@
+<div style="text-align: center;">
+
+    <input type="text" placeholder="Enter a city" [(ngModel)]="area" (keydown.enter) = "findArea()" id="areaInput" class="input"/>
+    <button (click)="findArea()" class="button" onmouseover="this.style.backgroundColor='#cccccc';" 
+        onmouseout="this.style.backgroundColor='#f3f6f4';">Search</button>
+    <h1>{{city}}</h1>
+
+    <p>{{}}</p>
+</div>
