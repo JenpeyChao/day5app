@@ -16,8 +16,8 @@ export class WeatherComponent {
   findArea(){
     this.city = this.area;
     this.area = '';
-    if (this.area != '') {
-      this.WeatherService.findWeather(this.area).subscribe(
+    if (this.city != '') {
+      this.WeatherService.findWeather(this.city).subscribe(
         response => {
           this.data = response;
           console.log(this.data);

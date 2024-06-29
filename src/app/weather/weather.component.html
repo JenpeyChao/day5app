@@ -7,7 +7,7 @@
     <button (click)="findArea()" class="button" onmouseover="this.style.backgroundColor='#cccccc';" 
         onmouseout="this.style.backgroundColor='#f3f6f4';">Search</button>
     <h1>{{city}}</h1>
-    <ng-container *ngIf = "city == ''">
+    <ng-container *ngIf = "city !== ''">
         <!-- <pre>{{weatherData[0].weather[0] | json}}</pre> -->
         <section class="vh-100">
             <div class="container py-5 h-10">
@@ -16,7 +16,7 @@
                 
                     <div class="card shadow-0 border" style="background-color: lightgray;">
                         <div class="card-body p-4">
-            
+                            <p>{{weatherData[0].dt_txt}} UTC</p>
                             <p class="mb-2">Current temperature: <strong>{{((weatherData[0].main.temp - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
                             <p>Feels like: <strong>{{((weatherData[0].main.feels_like - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
                             <p>Max: <strong>{{((weatherData[0].main.temp_max - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong>, Min: <strong>{{((weatherData[0].main.temp_min - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
@@ -36,7 +36,7 @@
                         <ng-container *ngIf = " i > 0">
                             <div class="card shadow-0 border" style="background-color: lightgray;">
                                 <div class="card-body p-4">
-                    
+                                    <p>{{weatherData[i].dt_txt}} UTC</p>
                                     <p class="mb-2">Current temperature: <strong>{{((weatherData[i].main.temp - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
                                     <p>Feels like: <strong>{{((weatherData[i].main.feels_like - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
                                     <p>Max: <strong>{{((weatherData[i].main.temp_max - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong>, Min: <strong>{{((weatherData[i].main.temp_min - 273.15) * 1.8 + 32).toFixed(2)}}°F</strong></p>
