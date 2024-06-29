@@ -8,7 +8,7 @@ import { WeatherService } from '../weather.service';
 export class WeatherComponent {
   area = '';
   city = '';
-  data: any = '';
+  data: any = 'Enter a city';
   weatherData: any = [];
   realCity: Boolean = false;
   constructor(private WeatherService: WeatherService){

@@ -7,7 +7,7 @@
     <button (click)="findArea()" class="button" onmouseover="this.style.backgroundColor='#cccccc';" 
         onmouseout="this.style.backgroundColor='#f3f6f4';">Search</button>
     <h1>{{city}}</h1>
-    <ng-container *ngIf = "city !== ''">
+    <ng-container *ngIf = "city !== '' && realCity == true">
         <!-- <pre>{{weatherData[0].weather[0] | json}}</pre> -->
         <section class="vh-100">
             <div class="container py-5 h-10">
@@ -53,6 +53,13 @@
                 </div>
             </div>
         </section>
+    </ng-container>
+    
+    <ng-container *ngIf = "city === ''">
+        <p>{{data}}</p>
+    </ng-container>
+    <ng-container *ngIf = "city !== '' && realCity === false">
+        <p>Couldnt find the City: {{city}}</p>
     </ng-container>
     
 </div>
