@@ -10,15 +10,18 @@ export class WeatherComponent {
   city = '';
   data: any = '';
   weatherData: any = [];
+  realCity: Boolean = false;
   constructor(private WeatherService: WeatherService){
   }
 
   findArea(){
+    this.realCity = false;
     this.city = this.area;
     this.area = '';
     if (this.city != '') {
       this.WeatherService.findWeather(this.city).subscribe(
         response => {
+          this.realCity = true;
           this.data = response;
           console.log(this.data);
           this.weatherData = []
@@ -27,12 +30,10 @@ export class WeatherComponent {
         error => {
           this.data = "Couldnt find the City: " + this.city;
           console.error('There was an error!', error);
-          return;
         }
       );
     }else{
       this.data = "Enter a city";
-      return
     }
   }
 
